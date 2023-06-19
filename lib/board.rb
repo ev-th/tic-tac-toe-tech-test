@@ -13,4 +13,23 @@ class Board
 
     @grid[row][column] = symbol
   end
+
+  def winner
+    rows = get_winnable_rows
+    winning_rows = rows.select { |row| winning_row?(row) }
+    winning_rows.empty? ? nil : winning_rows[0][0]
+  end
+
+  private
+
+  def get_winnable_rows
+    winnable_rows = @grid + @grid.transpose
+    winnable_rows.push [ @grid[0][0], @grid[1][1], @grid[1][1] ]
+    winnable_rows.push [ @grid[2][0], @grid[1][1], @grid[0][2] ]
+    winnable_rows
+  end
+
+  def winning_row?(row)
+    row.uniq.length == 1 && !row.first.nil?
+  end
 end
