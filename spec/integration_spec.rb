@@ -1,3 +1,7 @@
+require 'board'
+require 'game'
+require 'player'
+
 RSpec.describe "integration" do
   xit "sets up a game with an empty board" do
     board = Board.new
