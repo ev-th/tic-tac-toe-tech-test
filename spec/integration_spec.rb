@@ -15,5 +15,17 @@ RSpec.describe "integration" do
     expect(result_grid).to eq expected_grid
   end
 
+  it "allows the second player to place an O on the board" do
+    board = Board.new
+    game = Game.new(board, Player.new("X"), Player.new("O"))
+    current_player = game.current_player
+    current_player.move(board, "A3")
+    current_player = game.current_player
+    current_player.move(board, "B2")
 
+    result_grid = board.grid
+    expected_grid = [[nil, nil, nil], [nil, "O", nil], ["X", nil, nil]]
+
+    expect(result_grid).to eq expected_grid
+  end
 end
