@@ -7,7 +7,7 @@ RSpec.describe "integration" do
     board = Board.new
     game = Game.new(board, Player.new, Player.new)
     player = game.current_player
-    player.move("A3")
+    player.move(board, "A3")
 
     result_grid = board.grid
     expected_grid = [[nil, nil, nil], [nil, nil, nil], [nil, nil, "X"]]
