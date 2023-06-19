@@ -3,7 +3,7 @@ require 'game'
 require 'player'
 
 RSpec.describe "integration" do
-  it "sets up a game with an empty board" do
+  it "sets up a game and first player can place an X on the board" do
     board = Board.new
     game = Game.new(board, Player.new("X"), Player.new("O"))
     player = game.current_player
@@ -14,4 +14,6 @@ RSpec.describe "integration" do
 
     expect(result_grid).to eq expected_grid
   end
+
+
 end
