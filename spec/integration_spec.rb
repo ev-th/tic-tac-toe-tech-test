@@ -35,7 +35,7 @@ RSpec.describe "integration" do
     expect(game.over?).to be false
   end
 
-  xit "has a winner and is over once a player has placed 3 in a row vertically" do
+  it "has a winner and is over once a player has placed 3 in a row vertically" do
     board = Board.new
     player1 = Player.new("X")
     player2 = Player.new("O")
@@ -46,7 +46,7 @@ RSpec.describe "integration" do
     game.move("B2")
     game.move("A3")
 
-    expect(game.winner).to be player1
-    expect(game.game_over?).to be true
+    expect(game.get_winner).to be player1
+    expect(game.over?).to be true
   end
 end

@@ -23,13 +23,13 @@ class Game
   end
 
   def over?
-    !@winner.nil?
+    !get_winner.nil?
   end
 
   def get_winner
     winning_symbol = @board.winner
+    return nil if winning_symbol.nil?
     return @player1 if winning_symbol == @player1.symbol
     return @player2 if winning_symbol == @player2.symbol
-    return nil
   end
 end
