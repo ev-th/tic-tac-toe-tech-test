@@ -49,4 +49,35 @@ RSpec.describe "integration" do
     expect(game.get_winner).to be player1
     expect(game.over?).to be true
   end
+
+  it "has a winner and is over once a player has placed 3 in a row horizontally" do
+    board = Board.new
+    player1 = Player.new("X")
+    player2 = Player.new("O")
+    game = Game.new(board, player1, player2)
+    game.move("A1")
+    game.move("A3")
+    game.move("A2")
+    game.move("B3")
+    game.move("B1")
+    game.move("C3")
+
+    expect(game.get_winner).to be player2
+    expect(game.over?).to be true
+  end
+
+  it "has a winner and is over once a player has placed 3 in a row diagonally" do
+    board = Board.new
+    player1 = Player.new("X")
+    player2 = Player.new("O")
+    game = Game.new(board, player1, player2)
+    game.move("A1")
+    game.move("B1")
+    game.move("B2")
+    game.move("C1")
+    game.move("C3")
+
+    expect(game.get_winner).to be player1
+    expect(game.over?).to be true
+  end
 end
