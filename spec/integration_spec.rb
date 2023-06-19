@@ -80,4 +80,12 @@ RSpec.describe "integration" do
     expect(game.get_winner).to be player1
     expect(game.over?).to be true
   end
+
+  xit "does not allow players to claim a field that is already taken" do
+  end
+
+  context "when all of the fields are taken without a player getting 3 in a row" do
+    xit "the game is over without a winner" do
+    end
+  end
 end
