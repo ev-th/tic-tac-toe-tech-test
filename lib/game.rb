@@ -1,11 +1,11 @@
 class Game
-  attr_reader :current_player, :board
+  attr_reader :current_player, :board, :winner
 
-  def initialize(board, player_1, player_2)
+  def initialize(board, player1, player2)
     @board = board
-    @player_1 = player_1
-    @player_2 = player_2
-    @current_player = player_1
+    @player1 = player1
+    @player2 = player2
+    @current_player = player1
   end
 
   def get_board_grid
@@ -19,6 +19,17 @@ class Game
   end
 
   def switch_player
-    @current_player = @current_player == @player_1 ? @player_2 : @player_1
+    @current_player = @current_player == @player1 ? @player2 : @player1
+  end
+
+  def over?
+    !@winner.nil?
+  end
+
+  def get_winner
+    winning_symbol = @board.winner
+    return @player1 if winning_symbol == @player1.symbol
+    return @player2 if winning_symbol == @player2.symbol
+    return nil
   end
 end
