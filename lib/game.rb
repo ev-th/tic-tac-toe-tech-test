@@ -23,7 +23,7 @@ class Game
   end
 
   def over?
-    !get_winner.nil?
+    @board.complete?
   end
 
   def get_winner

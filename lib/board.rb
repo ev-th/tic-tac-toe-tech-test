@@ -23,11 +23,15 @@ class Board
     winning_rows.empty? ? nil : winning_rows[0][0]
   end
 
+  def complete?
+    !@grid.flatten.any?(nil) || !winner.nil?
+  end
+
   private
 
   def get_winnable_rows
     winnable_rows = @grid + @grid.transpose
-    winnable_rows.push [ @grid[0][0], @grid[1][1], @grid[1][1] ]
+    winnable_rows.push [ @grid[0][0], @grid[1][1], @grid[2][2] ]
     winnable_rows.push [ @grid[2][0], @grid[1][1], @grid[0][2] ]
     winnable_rows
   end

@@ -93,11 +93,12 @@ RSpec.describe "integration" do
   end
   
   context "when all of the fields are taken without a player getting 3 in a row" do
-    xit "the game is over without a winner" do
+    it "the game is over without a winner" do
       board = Board.new
       player1 = Player.new("X")
       player2 = Player.new("O")
       game = Game.new(board, player1, player2)
+      
       game.move("A1")
       game.move("B1")
       game.move("C1")
@@ -107,7 +108,7 @@ RSpec.describe "integration" do
       game.move("C2")
       game.move("C3")
       game.move("B3")
-      binding.irb
+
       expect(game.get_winner).to be nil
       expect(game.over?).to be true
       
