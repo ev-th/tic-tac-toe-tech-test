@@ -6,15 +6,10 @@ class Board
   end
 
   def place(symbol, position)
-    column_indices = {"A" => 0, "B" => 1, "C" => 2}
-    column = column_indices[position[0]]
+    row, column = position[1].to_i - 1, position[0].ord - 65
 
-    row = position[1].to_i - 1
-    if @grid[row][column].nil?
-      @grid[row][column] = symbol
-    else
-      raise 'Player cannot claim a field that is already claimed.'
-    end
+    raise_for_occupied(row, column)
+    @grid[row][column] = symbol
   end
 
   def winner
@@ -24,7 +19,7 @@ class Board
   end
 
   def complete?
-    !@grid.flatten.any?(nil) || !winner.nil?
+    !(@grid.flatten.any?(nil) && winner.nil?)
   end
 
   private
@@ -38,5 +33,10 @@ class Board
 
   def winning_row?(row)
     row.uniq.length == 1 && !row.first.nil?
+  end
+
+  def raise_for_occupied(row, column)
+    error = 'Player cannot claim a field that is already claimed.'
+    raise error if @grid[row][column]
   end
 end
