@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Board
   attr_accessor :grid
 
@@ -6,7 +8,8 @@ class Board
   end
 
   def place(symbol, position)
-    row, column = position[1].to_i - 1, position[0].ord - 65
+    row = position[1].to_i - 1
+    column = position[0].ord - 65
 
     raise_for_occupied(row, column)
     @grid[row][column] = symbol
@@ -26,8 +29,8 @@ class Board
 
   def get_winnable_rows
     winnable_rows = @grid + @grid.transpose
-    winnable_rows.push [ @grid[0][0], @grid[1][1], @grid[2][2] ]
-    winnable_rows.push [ @grid[2][0], @grid[1][1], @grid[0][2] ]
+    winnable_rows.push [@grid[0][0], @grid[1][1], @grid[2][2]]
+    winnable_rows.push [@grid[2][0], @grid[1][1], @grid[0][2]]
     winnable_rows
   end
 
