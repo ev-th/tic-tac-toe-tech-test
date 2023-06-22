@@ -70,5 +70,13 @@ RSpec.describe Board do
       board.place("X", "C3")
       expect(board.winner).to eq "X"
     end
+    
+    it "cannot place a symbol on a place that is already claimed" do
+      board = Board.new
+      board.place("X", "A1")
+      expect { board.place("X", "A1") }.to raise_error(
+        'Player cannot claim a field that is already claimed.'
+      )
+    end
   end
 end

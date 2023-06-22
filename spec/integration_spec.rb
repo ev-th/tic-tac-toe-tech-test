@@ -76,16 +76,41 @@ RSpec.describe "integration" do
     game.move("B2")
     game.move("C1")
     game.move("C3")
-
+    
     expect(game.get_winner).to be player1
     expect(game.over?).to be true
   end
-
-  xit "does not allow players to claim a field that is already taken" do
+  
+  it "does not allow players to claim a field that is already taken" do
+    board = Board.new
+    player1 = Player.new("X")
+    player2 = Player.new("O")
+    game = Game.new(board, player1, player2)
+    game.move("A1")
+    expect { game.move("A1") }.to raise_error(
+      'Player cannot claim a field that is already claimed.'
+    )
   end
-
+  
   context "when all of the fields are taken without a player getting 3 in a row" do
     xit "the game is over without a winner" do
+      board = Board.new
+      player1 = Player.new("X")
+      player2 = Player.new("O")
+      game = Game.new(board, player1, player2)
+      game.move("A1")
+      game.move("B1")
+      game.move("C1")
+      game.move("A2")
+      game.move("B2")
+      game.move("A3")
+      game.move("C2")
+      game.move("C3")
+      game.move("B3")
+      binding.irb
+      expect(game.get_winner).to be nil
+      expect(game.over?).to be true
+      
     end
   end
 end

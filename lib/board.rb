@@ -10,8 +10,11 @@ class Board
     column = column_indices[position[0]]
 
     row = position[1].to_i - 1
-
-    @grid[row][column] = symbol
+    if @grid[row][column].nil?
+      @grid[row][column] = symbol
+    else
+      raise 'Player cannot claim a field that is already claimed.'
+    end
   end
 
   def winner
