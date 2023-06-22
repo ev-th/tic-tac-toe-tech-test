@@ -4,7 +4,6 @@ RSpec.describe Board do
   let(:board) { described_class.new }
 
   it "is initialized with an empty grid" do
-    
     expected_grid = [[nil, nil, nil], [nil, nil, nil], [nil, nil, nil]]
     
     expect(board.grid).to eq expected_grid
@@ -14,7 +13,6 @@ RSpec.describe Board do
     board.place("X", "B2")
     
     expected_grid = [[nil, nil, nil], [nil, "X", nil], [nil, nil, nil]]
-    
     expect(board.grid).to eq expected_grid
   end
   
@@ -22,13 +20,11 @@ RSpec.describe Board do
     board.place("O", "A1")
     
     expected_grid = [["O", nil, nil], [nil, nil, nil], [nil, nil, nil]]
-    
     expect(board.grid).to eq expected_grid
   end
 
   describe "#winner" do
     it "starts with no winner and is not complete" do
-
       expect(board.winner).to eq nil
     end
     
@@ -55,6 +51,7 @@ RSpec.describe Board do
       board.place("O", "B1")
       board.place("O", "B2")
       board.place("O", "B3")
+
       expect(board.winner).to eq "O"
     end
     
@@ -62,11 +59,13 @@ RSpec.describe Board do
       board.place("X", "A1")
       board.place("X", "B2")
       board.place("X", "C3")
+
       expect(board.winner).to eq "X"
     end
     
     it "cannot place a symbol on a place that is already claimed" do
       board.place("X", "A1")
+
       expect { board.place("X", "A1") }.to raise_error(
         'Player cannot claim a field that is already claimed.'
       )
@@ -85,6 +84,7 @@ RSpec.describe Board do
       board.place("O", "A2")
       board.place("X", "C1")
       board.place("O", "B1")
+
       expect(board.complete?).to eq false
     end
     
@@ -92,6 +92,7 @@ RSpec.describe Board do
       board.place("O", "B1")
       board.place("O", "B2")
       board.place("O", "B3")
+
       expect(board.complete?).to eq true
     end
     
@@ -105,6 +106,7 @@ RSpec.describe Board do
       board.place('X', "C2")
       board.place('O', "C3")
       board.place('X', "B3")
+      
       expect(board.winner).to eq nil
       expect(board.complete?).to eq true
     end
