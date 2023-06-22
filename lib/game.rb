@@ -1,5 +1,5 @@
 class Game
-  attr_reader :current_player, :board, :winner
+  attr_reader :current_player
 
   def initialize(board, player1, player2)
     @board = board
@@ -13,12 +13,7 @@ class Game
   end
 
   def move(position)
-    symbol = @current_player.symbol
-    @board.place(symbol, position)
-    switch_player
-  end
-
-  def switch_player
+    @board.place(@current_player.symbol, position)
     @current_player = @current_player == @player1 ? @player2 : @player1
   end
 
@@ -27,9 +22,8 @@ class Game
   end
 
   def get_winner
-    winning_symbol = @board.winner
-    return nil if winning_symbol.nil?
-    return @player1 if winning_symbol == @player1.symbol
-    return @player2 if winning_symbol == @player2.symbol
+    return nil if @board.winner.nil?
+    return @player1 if @board.winner == @player1.symbol
+    return @player2 if @board.winner == @player2.symbol
   end
 end
