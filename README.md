@@ -1,3 +1,57 @@
+# Tic Tac Toe Tech Test
+
+My solution to the Makers Academy Tic Tac Toe tech test. The project includes the business logic for the game of tic tac toe.
+
+## Setup
+
+Clone the repository, install dependencies, and run tests:
+```shell
+git clone https://github.com/ev-th/tic-tac-toe-tech-test.git
+cd tic-tac-toe-tech-test
+bundle install
+rspec
+```
+
+## Usage
+
+You can interact with with program in IRB
+```ruby
+# Require the files.
+require_relative 'lib/board'
+require_relative 'lib/game'
+require_relative 'lib/player'
+
+# Initialize the board, players and game.
+board = Board.new
+player1 = Player.new('X')
+player2 = Player.new('O')
+game = Game.new(board, player1, player2)
+
+# Check the current player and grid at any point
+game.get_board_grid
+game.current_player
+
+# Current player claims a field with their symbol
+game.move('A1')
+
+# The player swaps and the other player claims a field
+game.current_player
+game.move('A2')
+
+# The game continues until there are no fields left or
+# a winner has claimed three in a row
+game.move('B1')
+game.move('B2')
+game.move('C1')
+game.over?
+game.get_winner
+```
+
+## Demonstration
+![repl demonstration](./demo.png)
+
+The following is the original specification from Makers Academy
+
 # Try our Tic Tac Toe Tech Test!
 
 This is a very common tech test as it demonstrates a candidate's knowledge of basic data structures.
